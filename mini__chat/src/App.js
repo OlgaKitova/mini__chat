@@ -1,9 +1,12 @@
 import './App.css';
+import socket from './socket';
+import RoomEntry from './components/roomEntry';
+import Chat from './components/chat';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <RoomEntry/>
     </div>
   );
 }
