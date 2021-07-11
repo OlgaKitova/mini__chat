@@ -5,8 +5,8 @@ import axios from 'axios';
 
 
 function RoomEntry ({onLogin}) {
-  const [roomId, setroomId] = useState('');
-  const [userName, setuserName] = useState('');
+  const [roomId, setRoomId] = useState('');
+  const [userName, setUserName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const onEnter = async () => {
@@ -16,7 +16,8 @@ function RoomEntry ({onLogin}) {
       roomId,
       userName
     }
-    await axios.post('/rooms', obj).then(onLogin(obj))
+    await axios.post('/rooms', obj);
+    onLogin(obj)
   }
 
 
@@ -26,7 +27,7 @@ return (
           type="text"
           placeholder="Room entry to ID"
           value={roomId}
-          onChange={({target}) => setroomId(target.value)}
+          onChange={({target}) => setRoomId(target.value)}
           required
           title="Обязательное поле"
       />
@@ -34,7 +35,7 @@ return (
           type="text"
           placeholder="Your name"
           value={userName}
-          onChange={({target}) => setuserName(target.value)}
+          onChange={({target}) => setUserName(target.value)}
           required
           title="Обязательное поле"
       />
