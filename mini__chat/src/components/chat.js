@@ -1,24 +1,33 @@
 import React from 'react';
 import socket from '../socket';
+import {StyleChat, StyleChatUsers, StyleChatMessages, StyleMessages, StyleMessage} from './style/style__Chat';
 
 function Chat () {
   return (
-     <div className="chat">
-      <div className="chat-users">
+     <StyleChat>
+      <StyleChatUsers>
         Комната:
         <ul></ul>
-      </div>
-      <div className="chat-messages">
-        <div className="messages"></div>
+      </StyleChatUsers>
+      <StyleChatMessages>
+        <StyleMessages>
+          <StyleMessage>
+            <p></p>
+            <div>
+              <span></span>
+            </div>
+          </StyleMessage>
+
+        </StyleMessages>
         <form>
           <textarea
                     className="form-control"
                     rows="3">
          </textarea>
-          <button type="button" className="btn btn-send"> Отправить</button>
+          <button> Отправить</button>
         </form>
-      </div>
-    </div>
+      </StyleChatMessages>
+    </StyleChat>
   )
 }
 

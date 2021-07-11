@@ -26,19 +26,18 @@ function App() {
   
 
   useEffect(() => {
-    
+
   socket.on('ROOM: JOINED', (users) => {
     console.log("Новый пользователь вошел в чат", users)
   })
 
-  }
-  )
+  }, [])
 
  console.log(state);
   return (
     <div className="App">
 
-      {!state.isAuth && <RoomEntry onLogin={onLogin}/>}
+      {!state.isAuth ? <RoomEntry onLogin={onLogin}/> : <Chat/>}
       
     </div>
   );
