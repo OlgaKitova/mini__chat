@@ -7,6 +7,9 @@ const app = express();
 const server = require('http').Server(app);
 const io = socket(server);
 
+// accept the body of the request
+app.use(express.json())
+
 // database
 const rooms = new Map();
 
@@ -15,7 +18,16 @@ app.get('/rooms', (req, res) => {
 });
 
 app.post('/rooms', (req, res) => {
-  console.log("Hello world")
+
+  const {roomId, useName} = req.body;
+
+  if(!rooms.has(roomId)) {
+    rooms.set(roomId, new Map([
+      ["users", new Map()],
+      ["messages", []]
+    ]))
+  }
+    res.send("отправлен")
 });
 
 //enable socket 
