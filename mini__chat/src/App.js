@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import socket from './socket';
 import axios from 'axios';
@@ -51,7 +52,6 @@ function App() {
 
   }, [])
 
- console.log(state);
   return (
     <div className="App">
 

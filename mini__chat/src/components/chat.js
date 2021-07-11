@@ -21,8 +21,9 @@ function Chat ({users, messages, roomId, userName, onAddMessage}) {
     setMessageValue('');
   }
   useEffect(() => {
-    messageRef.current.scrollTo(0, 99999)
+    messageRef.current.scroll(0, messageRef.current.scrollHeight)
   }, [messages])
+
   return (
      <StyleChat>
       <StyleChatUsers>
@@ -37,15 +38,14 @@ function Chat ({users, messages, roomId, userName, onAddMessage}) {
       </StyleChatUsers>
       <StyleChatMessages>
         <StyleMessages ref={messageRef}>
-          {messages.map((message) => {
+          {messages.map((message) => (
               <StyleMessage>
                 <p>{message.text}</p>
                 <div>
                   <span>{message.userName}</span>
                 </div>
               </StyleMessage>
-
-          })}
+          ))}
           
         </StyleMessages>
         <form>

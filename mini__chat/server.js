@@ -15,8 +15,8 @@ const rooms = new Map();
 app.get('/rooms/:id', (req, res) => {
   const {id: roomId} = req.params;
   const obj = rooms.has(roomId) ? {
-    users: [...rooms.get(roomId).get("users").values()],
-    messages: [...rooms.get(roomId).get("messages").values()],
+    users: [...rooms.get(roomId).get('users').values()],
+    messages: [...rooms.get(roomId).get('messages').values()],
   } : {users: [], messages: []}
   res.json(obj)
 });
@@ -29,8 +29,8 @@ app.post('/rooms', (req, res) => {
     rooms.set(
       roomId, 
       new Map([
-        ["users", new Map()],
-        ["messages", []]
+        ['users', new Map()],
+        ['messages', []]
     ]))
   }
     res.send()
@@ -70,5 +70,5 @@ io.on('connection', (socket) => {
 
 server.listen(PORT, (err) => {
   if(err) throw Error(err);
-  console.log("Сервер запущен на порту")
+  console.log(`Сервер запущен на порту ${PORT}`)
 });
