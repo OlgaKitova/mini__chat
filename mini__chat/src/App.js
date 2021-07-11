@@ -26,15 +26,18 @@ function App() {
   }
 
   
-
-  useEffect(() => {
-
-  socket.on('ROOM: JOINED', (users) => {
-    dispatch({
+ const setUsers = (users) => {
+  dispatch({
       type: 'SET_USERS',
       payload: users,
     })
-  })
+ }
+
+  useEffect(() => {
+
+  socket.on('ROOM: JOINED', setUsers)
+
+  socket.on('ROOM: SET_USERS', setUsers)
 
   }, [])
 
