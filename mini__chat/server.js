@@ -1,11 +1,9 @@
-
 const express = require('express');
-const socket = require('socket.io');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 const server = require('http').Server(app);
-const io = socket(server);
+const io = require('socket.io')(server);
 
 // accept the body of the request
 app.use(express.json())
@@ -31,7 +29,12 @@ app.post('/rooms', (req, res) => {
 });
 
 //enable socket 
-io.on('connection', () => {
+io.on('connection', (socket) => {
+
+  socket.on('ROOM: JOIN', data => {
+    console.log(data);
+  })
+
   console.log("User connected")
 })
 

@@ -11,10 +11,12 @@ function RoomEntry ({onLogin}) {
 
   const onEnter = async () => {
     setIsLoading(true);
-    await axios.post('/rooms', {
+
+    const obj = {
       roomId,
       userName
-    }).then(onLogin)
+    }
+    await axios.post('/rooms', obj).then(onLogin(obj))
   }
 
 

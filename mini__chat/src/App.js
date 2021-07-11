@@ -9,17 +9,21 @@ function App() {
 
   const [state, dispatch] = useReducer(reducer, {
     isAuth: false,
-
+    roomId: null,
+    userName: null
   });
 
-  const onLogin = () => {
+  const onLogin = (obj) => {
     
     dispatch({
       type: 'ISAUTH',
-      payload: true,
-    })
+      payload: obj,
+    });
+
+    socket.emit('ROOM: JOIN', obj);
   }
-  console.log(state.isAuth)
+
+ console.log(state);
   return (
     <div className="App">
 

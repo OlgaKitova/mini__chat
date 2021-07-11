@@ -4,7 +4,9 @@ const reducer = function (state, action) {
     case 'ISAUTH':
       return {
           ...state,
-          isAuth: action.payload,
+          isAuth: true,
+          userName: action.payload.userName,
+          roomId: action.payload.roomId
         };
     default:
       return state;
