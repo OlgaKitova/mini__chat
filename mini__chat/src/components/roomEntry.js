@@ -7,9 +7,11 @@ import axios from 'axios';
 function RoomEntry ({onLogin}) {
   const [roomId, setroomId] = useState('');
   const [userName, setuserName] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onEnter = () => {
-    axios.post('/rooms', {
+  const onEnter = async () => {
+    setIsLoading(true);
+    await axios.post('/rooms', {
       roomId,
       userName
     }).then(onLogin)
@@ -34,7 +36,8 @@ return (
           required
           title="Обязательное поле"
       />
-      <button onClick={onEnter}> Enter </button>
+      <button disabled={isLoading} onClick={onEnter}> 
+      {isLoading ? 'Log In' : 'Sign In' } </button>
   </StyledRoomEntry>
 )
 }
