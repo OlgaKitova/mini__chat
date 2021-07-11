@@ -30,7 +30,10 @@ function App() {
   useEffect(() => {
 
   socket.on('ROOM: JOINED', (users) => {
-    console.log("Новый пользователь вошел в чат", users)
+    dispatch({
+      type: 'SET_USERS',
+      payload: users,
+    })
   })
 
   }, [])
@@ -39,7 +42,7 @@ function App() {
   return (
     <div className="App">
 
-      {!state.isAuth ? <RoomEntry onLogin={onLogin}/> : <Chat/>}
+      {!state.isAuth ? <RoomEntry onLogin={onLogin}/> : <Chat {...state}/>}
       
     </div>
   );

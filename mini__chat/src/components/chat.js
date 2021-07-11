@@ -3,15 +3,18 @@ import { useState } from 'react';
 import socket from '../socket';
 import {StyleChat, StyleChatUsers, StyleChatMessages, StyleMessages, StyleMessage} from './style/style__Chat';
 
-function Chat () {
+function Chat ({users, messages, roomId}) {
     const [messageValue, setMessageValue] = useState('');
   return (
      <StyleChat>
       <StyleChatUsers>
-        <b>Room:</b>
-        <b>Online User(s):</b>
+        <b>Room: {roomId}</b>
+        <br/>
+        <b>Online User(s): {users.length}</b>
         <ul>
-          <li>Test User</li>
+      {users.map((name, index) => (
+            <li key={name + index}>{name}</li>
+          ))}
         </ul>
       </StyleChatUsers>
       <StyleChatMessages>
