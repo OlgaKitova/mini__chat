@@ -1,11 +1,12 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import socket from '../socket';
 import {StyleChat, StyleChatUsers, StyleChatMessages, StyleMessages, StyleMessage} from './style/style__Chat';
 
 function Chat ({users, messages, roomId, userName, onAddMessage}) {
   
     const [messageValue, setMessageValue] = useState('');
+    const messageRef = useRef(null);
 
   const onSendMessage = () => {
     socket.emit('ROOM:NEW_MESSAGE', {
@@ -19,7 +20,9 @@ function Chat ({users, messages, roomId, userName, onAddMessage}) {
     })
     setMessageValue('');
   }
-
+  useEffect(() => {
+    messageRef.current.scrollTo(0, 99999)
+  }, [messages])
   return (
      <StyleChat>
       <StyleChatUsers>
@@ -33,7 +36,7 @@ function Chat ({users, messages, roomId, userName, onAddMessage}) {
         </ul>
       </StyleChatUsers>
       <StyleChatMessages>
-        <StyleMessages>
+        <StyleMessages ref={messageRef}>
           {messages.map((message) => {
               <StyleMessage>
                 <p>{message.text}</p>
