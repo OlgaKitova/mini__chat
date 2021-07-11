@@ -2,7 +2,7 @@ import './App.css';
 import socket from './socket';
 import RoomEntry from './components/roomEntry';
 import Chat from './components/chat';
-import {useReducer} from 'react';
+import {useReducer, useEffect} from 'react';
 import reducer from './reducer';
 
 function App() {
@@ -22,6 +22,17 @@ function App() {
 
     socket.emit('ROOM: JOIN', obj);
   }
+
+  
+
+  useEffect(() => {
+    
+  socket.on('ROOM: JOINED', (users) => {
+    console.log("Новый пользователь вошел в чат", users)
+  })
+
+  }
+  )
 
  console.log(state);
   return (
