@@ -36,7 +36,6 @@ export const StyleChatMessages = styled.div`
   div {
     flex: 1;
     height: calc(100% - 155px);
-    overflow: auto;
   }
   form {
   margin-top: 20px;
@@ -68,7 +67,6 @@ form textarea {
 export const StyleMessages = styled.div`
   flex: 1;
   height: calc(100% - 155px);
-  overflow: auto;
 `;
 
 
@@ -84,7 +82,7 @@ export const StyleMessage = styled.div`
   color: #fff;
   margin-bottom: 2px;
  }
- span {
+ div > span {
   opacity: 0.5;
   font-size: 14px;
  }

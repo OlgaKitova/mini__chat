@@ -1,5 +1,6 @@
 import './App.css';
 import socket from './socket';
+import axios from 'axios';
 import RoomEntry from './components/roomEntry';
 import Chat from './components/chat';
 import {useReducer, useEffect} from 'react';
@@ -15,17 +16,25 @@ function App() {
     messages: []
   });
 
-  const onLogin = (obj) => {
+  const onLogin = async (obj) => {
     
     dispatch({
       type: 'ISAUTH',
       payload: obj,
     });
 
-    socket.emit('ROOM: JOIN', obj);
+    socket.emit('ROOM:JOIN', obj);
+    const {data} = await axios.get(`/rooms/${obj.roomId}`);
+    setUsers(data.users);
+    console.log(data.users);
   }
 
-  
+  const addMessage = (message) => {
+    dispatch({
+      type: 'NEW_MESSAGE',
+      payload: message
+    })
+  }
  const setUsers = (users) => {
   dispatch({
       type: 'SET_USERS',
@@ -35,9 +44,8 @@ function App() {
 
   useEffect(() => {
 
-  socket.on('ROOM: JOINED', setUsers)
-
-  socket.on('ROOM: SET_USERS', setUsers)
+  socket.on('ROOM:SET_USERS', setUsers);
+  socket.on('ROOM:NEW_MESSAGE', addMessage)
 
   }, [])
 
@@ -45,7 +53,7 @@ function App() {
   return (
     <div className="App">
 
-      {!state.isAuth ? <RoomEntry onLogin={onLogin}/> : <Chat {...state}/>}
+      {!state.isAuth ? <RoomEntry onLogin={onLogin}/> : <Chat {...state} onAddMessage={addMessage}/>}
       
     </div>
   );

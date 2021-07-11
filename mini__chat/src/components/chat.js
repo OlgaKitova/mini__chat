@@ -3,8 +3,23 @@ import { useState } from 'react';
 import socket from '../socket';
 import {StyleChat, StyleChatUsers, StyleChatMessages, StyleMessages, StyleMessage} from './style/style__Chat';
 
-function Chat ({users, messages, roomId}) {
+function Chat ({users, messages, roomId, userName, onAddMessage}) {
+  
     const [messageValue, setMessageValue] = useState('');
+
+  const onSendMessage = () => {
+    socket.emit('ROOM:NEW_MESSAGE', {
+      text: messageValue,
+      userName,
+      roomId
+    });
+    onAddMessage({
+      text: messageValue,
+      userName
+    })
+    setMessageValue('');
+  }
+
   return (
      <StyleChat>
       <StyleChatUsers>
@@ -19,13 +34,16 @@ function Chat ({users, messages, roomId}) {
       </StyleChatUsers>
       <StyleChatMessages>
         <StyleMessages>
-          <StyleMessage>
-            <p>Привет! Как дела?</p>
-            <div>
-              <span>Коля</span>
-            </div>
-          </StyleMessage>
+          {messages.map((message) => {
+              <StyleMessage>
+                <p>{message.text}</p>
+                <div>
+                  <span>{message.userName}</span>
+                </div>
+              </StyleMessage>
 
+          })}
+          
         </StyleMessages>
         <form>
           <textarea
@@ -34,7 +52,7 @@ function Chat ({users, messages, roomId}) {
                     className="form-control"
                     rows="3">
          </textarea>
-          <button> Отправить</button>
+          <button onClick={onSendMessage}> Отправить</button>
         </form>
       </StyleChatMessages>
     </StyleChat>
