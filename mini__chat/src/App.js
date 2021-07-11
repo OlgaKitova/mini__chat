@@ -10,7 +10,9 @@ function App() {
   const [state, dispatch] = useReducer(reducer, {
     isAuth: false,
     roomId: null,
-    userName: null
+    userName: null,
+    users: [],
+    messages: []
   });
 
   const onLogin = (obj) => {
