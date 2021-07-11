@@ -55,7 +55,10 @@ function Chat ({users, messages, roomId, userName, onAddMessage}) {
                     className="form-control"
                     rows="3">
          </textarea>
-          <button onClick={onSendMessage}> Отправить</button>
+          <button onClick={(e) => {
+            e.preventDefault();
+            onSendMessage();
+           }}> Отправить</button>
         </form>
       </StyleChatMessages>
     </StyleChat>

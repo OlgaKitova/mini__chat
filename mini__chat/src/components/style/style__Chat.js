@@ -67,6 +67,7 @@ form textarea {
 export const StyleMessages = styled.div`
   flex: 1;
   height: calc(100% - 155px);
+  overflow: auto;
 `;
 
 
