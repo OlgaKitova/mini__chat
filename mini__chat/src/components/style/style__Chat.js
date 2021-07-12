@@ -39,10 +39,13 @@ export const StyleChatMessages = styled.div`
     height: calc(100% - 155px);
   }
   form {
+  display: flex;
+  flex-direction: column;
   margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   button {
+  align-self: flex-end;
   padding: 5px 10px;
   cursor: pointer;
   border: none; 
@@ -78,7 +81,8 @@ export const StyleMessages = styled.div`
 
 export const StyleMessage = styled.div`
  margin-bottom: 20px;
-
+ align-self: flex-end;
+ margin-right: 10px;
  p {
   display: inline-flex;
   border-radius: 10px;
