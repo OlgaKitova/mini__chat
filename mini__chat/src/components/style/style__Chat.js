@@ -11,7 +11,7 @@ export const StyleChatUsers = styled.div`
   border-right: 1px solid rgba(159, 183, 197, 0.1);
   padding: 20px;
   width: 200px;
-  background-color: #f6f9fa;
+  background-color: #d9d5e4;
   ul {
   list-style: none;
   padding: 0;
@@ -33,6 +33,7 @@ export const StyleChatMessages = styled.div`
   justify-content: space-between;
   flex: 1;
   padding: 30px;
+  border-bottom: 1px solid #d9d5e4;
   div {
     flex: 1;
     height: calc(100% - 155px);
@@ -48,23 +49,27 @@ export const StyleChatMessages = styled.div`
   border-radius: 5px;
   font-size: 1.15rem;
   outline: none;
-  background: #000;
+  background: #221b5d;
   color: #FFF;
   transition: all 0.3 easy-in;
 }
 button:hover {
   transition: all 0.3 easy-in;
-  background: #333;
+  background: #171335;
 }
 }
 
 form textarea {
+  outline: none;
   width: 100%;
   margin-bottom: 10px;
+  font-size: 16px;
 }
 `;
 
 export const StyleMessages = styled.div`
+  display: flex;
+  flex-direction: column;
   flex: 1;
   height: calc(100% - 155px);
   overflow: auto;
@@ -78,13 +83,13 @@ export const StyleMessage = styled.div`
   display: inline-flex;
   border-radius: 10px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: #7160ff;
+  background-color: #766eb9;
   padding: 10px 15px 15px;
   color: #fff;
   margin-bottom: 2px;
  }
  div > span {
-  opacity: 0.5;
+  opacity: 0.8;
   font-size: 14px;
  }
 
