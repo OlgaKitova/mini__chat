@@ -7,7 +7,7 @@ import {useReducer, useEffect} from 'react';
 import reducer from './reducer';
 
 function App() {
-
+  // add data in the state
   const [state, dispatch] = useReducer(reducer, {
     isAuth: false,
     roomId: null,
@@ -16,27 +16,31 @@ function App() {
     messages: []
   });
 
+  // An async function that is passed by props to roomEntry.js and is called when you click on the "Login" button
   const onLogin = async (obj) => {
-    
+  // transmit dispatch about user authentication
     dispatch({
       type: 'ISAUTH',
       payload: obj,
     });
-
+    // sends a socket request with data user and room id
     socket.emit('ROOM:JOIN', obj);
+    // get data: users, room  and save messages
     const {data} = await axios.get(`/rooms/${obj.roomId}`);
+    // transmit dispatch save state => users and messages
     dispatch({
       type: 'SET_DATA',
       payload: data
     })
   }
-
+ // add message in реу state messages
   const addMessage = (message) => {
     dispatch({
       type: 'NEW_MESSAGE',
       payload: message
     })
   }
+  // write users in the state
  const setUsers = (users) => {
   dispatch({
       type: 'SET_USERS',
@@ -44,6 +48,7 @@ function App() {
     })
  }
 
+ // update new users and messages
   useEffect(() => {
 
   socket.on('ROOM:SET_USERS', setUsers);
