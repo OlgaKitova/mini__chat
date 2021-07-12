@@ -96,5 +96,22 @@ export const StyleMessage = styled.div`
   opacity: 0.8;
   font-size: 14px;
  }
-
+`;
+export const StyleMessageLeft = styled.div`
+ margin-bottom: 20px;
+ align-self: flex-start;
+ margin-left: 10px;
+ p {
+  display: inline-flex;
+  border-radius: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #766eb9;
+  padding: 10px 15px 15px;
+  color: #fff;
+  margin-bottom: 2px;
+ }
+ div > span {
+  opacity: 0.8;
+  font-size: 14px;
+ }
 `;

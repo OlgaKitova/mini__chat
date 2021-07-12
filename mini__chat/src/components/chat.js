@@ -1,10 +1,9 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import socket from '../socket';
-import {StyleChat, StyleChatUsers, StyleChatMessages, StyleMessages, StyleMessage} from './style/style__Chat';
+import {StyleChat, StyleChatUsers, StyleChatMessages, StyleMessages, StyleMessage, StyleMessageLeft} from './style/style__Chat';
 
 function Chat ({users, messages, roomId, userName, onAddMessage}) {
-  
     const [messageValue, setMessageValue] = useState('');
     const messageRef = useRef(null);
 
@@ -38,14 +37,27 @@ function Chat ({users, messages, roomId, userName, onAddMessage}) {
       </StyleChatUsers>
       <StyleChatMessages>
         <StyleMessages ref={messageRef}>
-          {messages.map((message) => (
+          {messages.map((message) => {
+            if(message.userName === userName) {
+              return (
               <StyleMessage>
                 <p>{message.text}</p>
                 <div>
                   <span>{message.userName}</span>
                 </div>
               </StyleMessage>
-          ))}
+          );
+            }  else {
+              return (
+              <StyleMessageLeft>
+                <p>{message.text}</p>
+                <div>
+                  <span>{message.userName}</span>
+                </div>
+              </StyleMessageLeft>
+          );
+            }
+          })}
           
         </StyleMessages>
         <form>
