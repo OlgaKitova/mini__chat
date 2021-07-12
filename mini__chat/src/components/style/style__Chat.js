@@ -6,6 +6,7 @@ export const StyleChat = styled.div`
   border: 1px solid rgba(159, 183, 197, 0.2);
   border-radius: 8px;
   overflow: hidden;
+  color: #221b5d;
 `;
 export const StyleChatUsers = styled.div`
   border-right: 1px solid rgba(159, 183, 197, 0.1);
@@ -63,6 +64,9 @@ button:hover {
 }
 
 form textarea {
+  resize: none;
+  border: 1px solid #221b5d;
+  border-radius: 5px;
   outline: none;
   width: 100%;
   margin-bottom: 10px;

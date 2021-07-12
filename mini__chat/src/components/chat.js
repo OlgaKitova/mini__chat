@@ -26,9 +26,10 @@ function Chat ({users, messages, roomId, userName, onAddMessage}) {
   return (
      <StyleChat>
       <StyleChatUsers>
-        <b>Room: {roomId}</b>
+        <b>Комната чата № {roomId}</b>
         <br/>
-        <b>Online User(s): {users.length}</b>
+        <br></br>
+        <b>Сейчас онлайн: ({users.length})</b>
         <ul>
       {users.map((name, index) => (
             <li key={name + index}>{name}</li>
