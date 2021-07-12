@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import socket from './socket';
 import axios from 'axios';
 import RoomEntry from './components/roomEntry';
