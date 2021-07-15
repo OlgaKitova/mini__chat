@@ -1,7 +1,7 @@
 # mini__chat
 ReactJS + NodeJS + Socket.IO
 ---
-[Deploy](https://agile-crag-37446.herokuapp.com/)
+[Deploy](https://minilivechat.herokuapp.com/)
 
 ---
 Technologies used:
